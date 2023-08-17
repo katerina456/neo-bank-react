@@ -10,9 +10,11 @@ interface Props {
 const Acordeon: React.FC<Props> = ({title, array}) => {  
     const [open, setOpen] = React.useState(-1); 
 
-   /*  function onToggl(event: React.SyntheticEvent<HTMLInputElement>, index:number):void {
-        
-    }; */
+    function toggleDetails(event: React.SyntheticEvent<Element, Event>, index:number):void {
+        if (event.target) {
+            setOpen(index)
+        }
+    };
 
     return (
         <div className="acordeon">
@@ -21,14 +23,7 @@ const Acordeon: React.FC<Props> = ({title, array}) => {
                 array.map((item, index) => {
                     return (
                         <details key={item.summary} className="acordeon__details" open={open === index}
-                        onToggle={(event: React.SyntheticEvent) => {
-                            const target = event.currentTarget as HTMLInputElement;
-                            console.log(target)
-                           /*  if (target.value) {
-                                setOpen(index)
-                            }  */
-                        }} 
-                        
+                        onToggle={(event: React.SyntheticEvent) => toggleDetails(event, index)} 
                         >
                             <summary className="acordeon__summary">{item.summary}</summary>
                             <p className="acordeon__text">{item.text}</p>
