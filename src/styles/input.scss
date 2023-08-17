@@ -1,0 +1,34 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.input {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.input__field {
+    border-radius: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.20);
+    background: #F9F5E3;
+    width: 297px;
+    height: 40px;
+    padding: 0 16px;
+    outline: none;
+    @include fonts(#1A202C, 14px, 400, 100%);
+    &::placeholder {
+        @include fonts(#808080, 14px, 400, 100%);
+    }
+}
+
+.input__label {
+    @include fonts(#1A202C, 16px, 500, 100%);
+    span {
+        color: #F00;
+    }
+}
+
+.input__option {
+    @include fonts(#1A202C, 14px, 400, 100%);
+}
