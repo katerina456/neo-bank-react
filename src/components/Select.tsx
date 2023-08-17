@@ -3,8 +3,15 @@ import {Field, ErrorMessage } from 'formik';
 
 import '../styles/input.scss';
 
-function Select(props) {
-    let a = props.arr
+interface Props {
+    arr: string[],
+    required: boolean,
+    label: string,
+    name: string,
+}
+
+const Select: React.FC<Props> = (props) => {
+    let array = props.arr
     return (
         <div className="input">
             <label htmlFor={props.name} className="input__label">
@@ -18,7 +25,7 @@ function Select(props) {
             id={props.name}
             required={props.required}
             >
-                {a.map(item => {
+                {array.map(item => {
                     return (
                         <option value={item} className="input__option" key={item}>
                             {item}

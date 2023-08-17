@@ -8,10 +8,10 @@ import 'swiper/css/navigation';
 
 import "../styles/news.scss";
 
-function News() {
-    const [allNews, setAllNews] = useState([])
+const News: React.FC = () => {
+    const [allNews, setAllNews] = useState<any[]>([])
 
-    
+
     const newsElements = allNews.map(item => {
         return (
             <SwiperSlide key={item.publishedAt} className="slider__item ">

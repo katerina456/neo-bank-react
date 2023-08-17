@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import "../styles/support.scss";
 
-function Support() {
-    const [user, setUser] = useState();
-    const [status, setStatus] = useState();
+const Support: React.FC = () => {
+    const [user, setUser] = useState('');
+    const [status, setStatus] = useState(0);
 
-    function getSubscribe(event) {
+    function getSubscribe(event: React.FormEvent): void {
         event.preventDefault();
         fetch('http://localhost:8080/email', {
             method: 'POST',
@@ -35,7 +35,7 @@ function Support() {
                 <form action='#' className="support__form" onSubmit={getSubscribe}>
                     {window.sessionStorage.getItem('subscribe') === null && <div>
                         <input type="email" placeholder="Your email" value={user} required
-                        className="support__input" onChange={(event) => setUser(event.target.value)}
+                        className="support__input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUser(event.target.value)}
                         />
                         <button className="support__submit" type="submit">
                             <img src="icons/send.svg" alt=""/>

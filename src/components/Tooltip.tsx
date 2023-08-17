@@ -5,7 +5,7 @@ import TooltipItem from "./TooltipItem";
 import "../styles/tooltip.scss";
 
 
-function Tooltip() {
+const Tooltip: React.FC = () => {
     return (
         <section className="tooltip">
             <div className="container">

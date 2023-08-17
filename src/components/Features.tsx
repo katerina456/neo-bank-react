@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/features.scss";
 
-function Features() {
+const Features: React.FC = () => {
     return (
         <section className="features">
             <div className="container">

@@ -2,8 +2,8 @@ import React from "react";
 import Acordeon from "./Acordeon";
 
 
-function TabFaq() {
-    let issusingArray =[
+const TabFaq: React.FC = () => {
+    let issusingArray: {summary: string, text: string}[] = [
         {
             summary: 'How to get a card?',
             text: `We will deliver your card by courier free of charge. Delivery in Moscow and St. Petersburg - 1-2 working days. For other regions of the Russian Federation - 2-5 working
@@ -27,7 +27,7 @@ function TabFaq() {
         },
     ];
 
-    let usingArray = [
+    let usingArray: {summary: string, text: string}[] = [
         {
             summary: 'What is an interest free credit card?',
             text: `A credit card with a grace period is a bank card with an established credit limit, designed for payment, reservation of goods and services, as well as for receiving cash, which allows you to use credit funds free of charge for a certain period.`

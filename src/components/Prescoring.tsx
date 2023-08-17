@@ -4,8 +4,7 @@ import PrescoringForm from "./PrescoringForm";
 
 import "../styles/prescoring.scss";
 
-
-function Prescoring() {
+const Prescoring: React.FC = () => {
     return (
         <section className="prescoring">
             <div className="container">

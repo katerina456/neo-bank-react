@@ -5,7 +5,7 @@ import Prescoring from "./Prescoring";
 
 import "../styles/main.scss";
 
-function Loan() {
+const Loan: React.FC = () => {
     return (
         <main>
             <Tooltip />

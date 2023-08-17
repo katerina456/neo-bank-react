@@ -3,7 +3,7 @@ import Button from "./Button";
 
 import "../styles/chooseDesign.scss";
 
-function ChooseDesign() {
+const ChooseDesign: React.FC = () => {
     return (
         <section className="chooseDesign">
             <div className="container">

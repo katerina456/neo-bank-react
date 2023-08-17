@@ -4,8 +4,8 @@ import ExchangeRateItem from "./ExchangeRateItem";
 
 import "../styles/exchangeRate.scss";
 
-function ExchangeRate() {
-    const [exchangeValues, setExchageValues] = useState([60.78, 9.08, 64.78, 60.78, 0.46, 3.39]);
+const ExchangeRate: React.FC = () => {
+    const [exchangeValues, setExchageValues] = useState(['60.78', '9.08', '64.78', '60.78', '0.46', '3.39']);
     
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function ExchangeRate() {
                         <div className="exchangeRate-currency">
                             {
                                 exchangeValues.map((value, index) => {
-                                    return <ExchangeRateItem key={index*value} title={currencies[index]} value={value} />
+                                    return <ExchangeRateItem key={index*+value} title={currencies[index]} value={value} />
                                 })
                             }
                         </div>

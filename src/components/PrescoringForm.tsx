@@ -8,15 +8,11 @@ import Select from "./Select";
 import "../styles/prescoringForm.scss";
 
 
-function PrescoringForm() {
+const PrescoringForm: React.FC = () => {
     const [range, setRange] = React.useState(15000)
-    
-    function handleChange(event) {
-        setRange(event.target.value)
-    }
 
-    const color1 = "#5B35D5";
-    const color2 = "#E2E8F0";
+    const color1:string = "#5B35D5";
+    const color2:string = "#E2E8F0";
 
     return (
         <Formik
@@ -30,10 +26,9 @@ function PrescoringForm() {
                 'pas-series': "",
                 'pas-number': "" 
             }}
-/*             onSubmit={({ setSubmitting }) => {
+            onSubmit={() => {
                 console.log("Form is validated! Submitting the form...");
-                setSubmitting(false);
-            }} */
+            }}
         >
             {() => (
                 <Form className="form">
@@ -47,7 +42,8 @@ function PrescoringForm() {
                                 <label htmlFor="range" className="form__text">Select amount</label>
                                 <p>{range.toLocaleString()}</p>
                                 
-                                <input type="range" name="range" onChange={handleChange}
+                                <input type="range" name="range" 
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRange(+event.target.value)}
                                     min='15000' max='600000' value={range} 
                                     style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${range/600000*100}%, ${color2} ${range/600000*100}%)`}}
                                 />

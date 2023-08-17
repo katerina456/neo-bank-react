@@ -8,7 +8,7 @@ import Support from "./Support";
 
 import "../styles/main.scss";
 
-function Home() {
+const Home: React.FC = () => {
     return (
         <main>
             <ChooseDesign />

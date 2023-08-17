@@ -2,7 +2,12 @@ import React from "react";
 
 import "../styles/tabsMenu.scss";
 
-function TabMenu(props) {
+interface Props {
+    handleclick(index: number): void,
+    activeTab: number,
+}
+
+const TabMenu: React.FC<Props> = (props) => {
     let menuArray = ['About card', 
                     'Rates and conditions', 
                     'Cashback', 

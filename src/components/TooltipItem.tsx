@@ -1,7 +1,11 @@
 import React from "react";
 
+interface Props {
+    title: string,
+    text: string,
+}
 
-function TooltipItem(props) {
+const TooltipItem: React.FC<Props> = (props) => {
     return (
         <div className="tooltip__item">
             <p className="info_subtitle">{props.title}</p>

@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/map.scss";
 
-function BankMap() {
+const BankMap: React.FC = () => {
     return (
         <section className="map">
             <div className="container">

@@ -2,8 +2,8 @@ import React from "react";
 
 import "../styles/tabAbout.scss";
 
-function TabAbout() {
-    let contentArray = [
+const TabAbout: React.FC = () => {
+    let contentArray: {img: string, title: string, text: string, long: boolean}[] = [
         {
             img: 'icons/Money_duotone.svg',
             title: 'Up to 50 000 ₽',

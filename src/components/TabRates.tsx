@@ -2,8 +2,8 @@ import React from "react";
 
 import "../styles/tabRates.scss";
 
-function TabRates() {
-    let contentArray = [
+const TabRates: React.FC = () => {
+    let contentArray: {title: string, text: string[]}[] = [
         {
             title: 'Card currency',
             text: ['Rubles, dollars, euro']

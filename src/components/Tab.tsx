@@ -8,9 +8,9 @@ import TabFaq from "./TabFaq";
 
 import "../styles/tabs.scss";
 
-function Tab() {
+const Tab: React.FC = () => {
     const [activeTab, setActiveTab] = useState(0)
-    function toggleTab(index) {
+    function toggleTab(index: number): void {
         setActiveTab(index)
     }
     

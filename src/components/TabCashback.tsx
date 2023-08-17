@@ -2,8 +2,8 @@ import React from "react";
 
 import "../styles/tabCashback.scss";
 
-function TabCashBack() {
-    let contentArray = [
+const TabCashBack: React.FC = () => {
+    let contentArray: {title: string, text: string}[] = [
         {
             title: '5%',
             text: 'For food delivery, cafes and restaurants',

@@ -2,15 +2,14 @@ import React from "react";
 import '../styles/button.scss';
 
 interface Props {
-    type: "button" | "submit",
+    type?: "button" | "submit",
     text: string,
-  }
-  
+} 
 
-function Button({ type, text }: Props) {
+const Button: React.FC<Props> = (props) => {
     return (
-        <button className="button" type={type}>
-            <span>{text}</span>
+        <button className="button" type={props.type}>
+            <span>{props.text}</span>
         </button>
     )
 }

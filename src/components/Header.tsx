@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 import '../styles/header.scss';
 
-function Header() {
+const Header: React.FC = () => {
     let location = useLocation();
     
     return (
