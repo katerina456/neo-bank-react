@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "./Button";
+import Wraper from "./Wraper";
 
 import "../styles/chooseDesign.scss";
 
 const ChooseDesign: React.FC = () => {
     return (
-        <section className="chooseDesign">
-            <div className="container">
+        <Wraper classes="chooseDesign">
                 <div className="chooseDesign__container">
                     <div >
                         <h1 className="chooseDesign__title">
@@ -29,8 +29,7 @@ const ChooseDesign: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+        </Wraper>
     )
 }
 

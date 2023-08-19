@@ -22,7 +22,7 @@ const InputDate: React.FC<Props> = (props) => {
             className="input__field"
             placeholder={props.placeholder}
             id={props.name}
-            required={props.required}
+           /*  required={props.required} */
             onFocus={(e: React.FocusEvent<HTMLInputElement>) => (e.target.type = "date")}
             onBlur={(e: React.FocusEvent<HTMLInputElement>) => (e.target.type = "text")}
             />

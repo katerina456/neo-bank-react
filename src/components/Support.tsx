@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Wraper from "./Wraper";
 
 import "../styles/support.scss";
 
@@ -25,29 +26,27 @@ const Support: React.FC = () => {
     }
 
     return (
-        <section className="support">
-            <div className="container">
-                <h3 className="support__subTitle">Support</h3>
-                <div className="support__item">
-                    <h2 className="support__title">Subscribe Newsletter & get</h2>
-                    <h2 className="support__title"><span>Bank News</span></h2>
-                </div>
-                <form action='#' className="support__form" onSubmit={getSubscribe}>
-                    {window.sessionStorage.getItem('subscribe') === null && <div>
-                        <input type="email" placeholder="Your email" value={user} required
-                        className="support__input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUser(event.target.value)}
-                        />
-                        <button className="support__submit" type="submit">
-                            <img src="icons/send.svg" alt=""/>
-                            <span>Subscribe</span>
-                        </button>
-                    </div>}
-                    {window.sessionStorage.getItem('subscribe') === 'ok' && <p className="support__subTitle">
-                        You are already subscribed to the bank's newsletter
-                    </p>}
-                </form>
+        <Wraper classes="support">
+            <h3 className="support__subTitle">Support</h3>
+            <div className="support__item">
+                <h2 className="support__title">Subscribe Newsletter & get</h2>
+                <h2 className="support__title"><span>Bank News</span></h2>
             </div>
-        </section>
+            <form action='#' className="support__form" onSubmit={getSubscribe}>
+                {window.sessionStorage.getItem('subscribe') === null && <div>
+                    <input type="email" placeholder="Your email" value={user} required
+                    className="support__input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUser(event.target.value)}
+                    />
+                    <button className="support__submit" type="submit">
+                        <img src="icons/send.svg" alt=""/>
+                        <span>Subscribe</span>
+                    </button>
+                </div>}
+                {window.sessionStorage.getItem('subscribe') === 'ok' && <p className="support__subTitle">
+                    You are already subscribed to the bank's newsletter
+                </p>}
+            </form>
+        </Wraper>
     )
 }
 

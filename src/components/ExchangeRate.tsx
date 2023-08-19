@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import ExchangeRateItem from "./ExchangeRateItem";
+import Wraper from "./Wraper";
 
 import "../styles/exchangeRate.scss";
 
@@ -34,30 +35,28 @@ const ExchangeRate: React.FC = () => {
 
 
     return (
-        <section className="exchangeRate">
-            <div className="container">
-                <div className="exchangeRate__container">
-                    <div>
-                        <h2 className="exchangeRate__title">Exchange rate in internet bank</h2>
-                        <p className="exchangeRate__text">Currency</p>
-                        <div className="exchangeRate-currency">
-                            {
-                                exchangeValues.map((value, index) => {
-                                    return <ExchangeRateItem key={index*+value} title={currencies[index]} value={value} />
-                                })
-                            }
-                        </div>
-                        <a href="#" className="exchangeRate__text-white">All courses</a>
+        <Wraper classes="exchangeRate">
+            <div className="exchangeRate__container">
+                <div>
+                    <h2 className="exchangeRate__title">Exchange rate in internet bank</h2>
+                    <p className="exchangeRate__text">Currency</p>
+                    <div className="exchangeRate-currency">
+                        {
+                            exchangeValues.map((value, index) => {
+                                return <ExchangeRateItem key={index*+value} title={currencies[index]} value={value} />
+                            })
+                        }
                     </div>
-                    <div>
-                        <p className="exchangeRate__text-small">Update every 15 minutes, MSC 09.08.2022</p>
-                        <div className="exchangeRate__house">
-                            <img src="icons/house.svg" alt=""/>
-                        </div>
+                    <a href="#" className="exchangeRate__text-white">All courses</a>
+                </div>
+                <div>
+                    <p className="exchangeRate__text-small">Update every 15 minutes, MSC 09.08.2022</p>
+                    <div className="exchangeRate__house">
+                        <img src="icons/house.svg" alt=""/>
                     </div>
                 </div>
             </div>
-        </section>                
+        </Wraper>                
     )
 }
 

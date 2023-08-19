@@ -9,6 +9,7 @@ interface Props {
     type: "text" | "email" | "number",
     placeholder: string,
     name: string,
+    errors: any,
 }
 
 const Input: React.FC<Props> = (props) => {
@@ -20,10 +21,15 @@ const Input: React.FC<Props> = (props) => {
             <Field
             type={props.type}
             name={props.name}
-            className="input__field"
+            className={`input__field ${props.errors[props.name] && 'input__field-red' }`}
             placeholder={props.placeholder}
             id={props.name}
-            required={props.required}
+            /* required={props.required} */     
+            />
+            <ErrorMessage
+            component="div"
+            name={props.name}
+            className="input_error"
             />
         </div>
     )
