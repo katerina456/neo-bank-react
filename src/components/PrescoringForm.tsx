@@ -10,16 +10,30 @@ import Select from "./Select";
 import "../styles/prescoringForm.scss";
 
 
-const validationSchema = Yup.object().shape({
-    lastName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim().required("Enter your last name"),
-    firstName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim().required("Enter your first name"),
-    patronymic: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim(),
-    email: Yup.string().trim().email("Incorrect email address").required("Incorrect email address"),
-    date: Yup.string().required("Incorrect date of birth"),
-    passportSeries: Yup.string().matches(/^\d+$/, "Only numbers").length(4, "The series must be 4 digits").trim().required("The series must be 4 digits"),
-    passportNumber: Yup.string().matches(/^\d+$/, "Only numbers").length(6, "The number must be 6 digits").trim().required("The number must be 6 digits"),
-});
+function calculateAge(birthday: any) {
+    var ageDifMs = Date.now() - birthday;
+    var ageDate = new Date(ageDifMs); 
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
 
+
+const validationSchema = Yup.object().shape({
+    lastName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters")
+        .trim().required("Enter your last name"),
+    firstName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters")
+        .trim().required("Enter your first name"),
+    middleName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim(),
+    email: Yup.string().email("Incorrect email address")
+        .trim().required("Incorrect email address"),
+    birthdate: Yup.date().required(`Incorrect date of birth`)
+        .test("birthday", "Incorrect date of birth", function(value) {
+            return calculateAge(new Date(value)) >= 18;
+        }),
+    passportSeries: Yup.string().matches(/^\d+$/, "Only numbers")
+        .length(4, "The series must be 4 digits").trim().required("The series must be 4 digits"),
+    passportNumber: Yup.string().matches(/^\d+$/, "Only numbers")
+        .length(6, "The number must be 6 digits").trim().required("The number must be 6 digits"),
+});
 
 
 const PrescoringForm: React.FC = () => {
@@ -31,60 +45,35 @@ const PrescoringForm: React.FC = () => {
     return (
         <Formik
             initialValues={{ 
+                amount: 100000,
                 lastName: "",
                 firstName: "",
-                patronymic: "",
-                select: "6 month",
+                middleName: "",
+                term: "6 month",
                 email: "", 
-                date: "",
+                birthdate: "",
                 passportSeries: "",
                 passportNumber: "" 
             }}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={() => {
-
-                console.log("Form is validated! Submitting the form...");
+            onSubmit={(val) => {
+                console.log(val)
+        
                 fetch('http://localhost:8080/application', {
-            method: 'POST',
-            
-        }) 
-        .then(res => {
-            console.log(res.status)
-            
-        })
-        .catch(err => console.log(err));
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(val)
+                }) 
+                .then(res => {
+                    console.log(res.status)
+                    
+                })
+                .catch(err => console.log(err));
             }}
             validationSchema={validationSchema}
-            /* validate={(values) => {
-                const errors = {
-                    lastName: '',
-                    firstName: '',
-                    email: '',
-                    date: '',
-                    passportSeries: '',
-                    passportNumber: ''
-                };
-                if (!values.lastName) {
-                    errors.lastName = 'Enter your last name';
-                }
-                if (!values.firstName) {
-                    errors.firstName = "Enter your first name";
-                }
-                if (!values.email) {
-                    errors.email = "Incorrect email address"
-                }
-                if (!values.date) {
-                    errors.date = "Incorrect date of birth"
-                }
-                if (!values.passportSeries) {
-                    errors.passportSeries = "The series must be 4 digits"
-                }
-                if (!values.passportNumber) {
-                    errors.passportNumber = "The series must be 6 digits"
-                }
-                return errors;
-            }} */
         >
             {({errors}) => (
                 <Form className="form" id="applyForm">
@@ -95,10 +84,10 @@ const PrescoringForm: React.FC = () => {
                                 <p className="form__text">Step 1 of 5</p>
                             </div>
                             <div className="form__range">
-                                <label htmlFor="range" className="form__text">Select amount</label>
+                                <label htmlFor="amount" className="form__text">Select amount</label>
                                 <p>{range.toLocaleString()}</p>
                                 
-                                <input type="range" name="range" 
+                                <input type="range" name="amount" 
                                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRange(+event.target.value)}
                                     min='15000' max='600000' value={range} 
                                     style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${range/600000*100}%, ${color2} ${range/600000*100}%)`}}
@@ -124,19 +113,19 @@ const PrescoringForm: React.FC = () => {
                         <Input type='text' name='firstName' label='Your first name'
                             placeholder='For Example Jhon' required={true} errors={errors} 
                         />
-                        <Input type='text' name='patronymic' label='Your patronymic'
+                        <Input type='text' name='middleName' label='Your patronymic'
                             placeholder='For Example Victorovich' required={false} errors={errors} 
                         />
 
-                        <Select name='select' label='Select term' required={true}
+                        <Select name='term' label='Select term' required={true}
                             arr={['6 month', '12 month', '18 month', '24 month']} 
                         />
 
                         <Input type='email' name='email' label='Your email' 
                             placeholder='test@gmail.com' required={true} errors={errors} 
                         />
-                        <InputDate type='date' name='date' label='Your date of birth'
-                            placeholder='Select Date and Time' required={true}
+                        <InputDate type='date' name='birthdate' label='Your date of birth'
+                            placeholder='Select Date and Time' required={true} errors={errors} 
                         /> 
 
                         <Input type='text' name='passportSeries' label='Your passport series'

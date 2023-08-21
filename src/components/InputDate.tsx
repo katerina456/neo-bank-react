@@ -8,7 +8,8 @@ interface Props {
     required: boolean,
     placeholder: string,
     name: string,
-    type: "date"
+    type: "date",
+    errors: any,
 }
 
 const InputDate: React.FC<Props> = (props) => {
@@ -19,12 +20,17 @@ const InputDate: React.FC<Props> = (props) => {
             </label>
             <Field
             name={props.name}
-            className="input__field"
+            className={`input__field ${props.errors[props.name] && 'input__field-red' }`}
             placeholder={props.placeholder}
             id={props.name}
            /*  required={props.required} */
             onFocus={(e: React.FocusEvent<HTMLInputElement>) => (e.target.type = "date")}
             onBlur={(e: React.FocusEvent<HTMLInputElement>) => (e.target.type = "text")}
+            />
+            <ErrorMessage
+            component="div"
+            name={props.name}
+            className="input_error"
             />
         </div>
     )
