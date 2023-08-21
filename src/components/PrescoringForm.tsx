@@ -37,8 +37,6 @@ const validationSchema = Yup.object().shape({
 
 
 const PrescoringForm: React.FC = () => {
-    //const [range, setRange] = React.useState(15000)
-
     const color1:string = "#5B35D5";
     const color2:string = "#E2E8F0";
 
@@ -58,8 +56,7 @@ const PrescoringForm: React.FC = () => {
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={(val) => {
-                console.log(val)
-        
+                console.log(val) 
                 fetch('http://localhost:8080/application', {
                     method: 'POST',
                     headers: {
@@ -67,15 +64,12 @@ const PrescoringForm: React.FC = () => {
                     },
                     body: JSON.stringify(val)
                 }) 
-                .then(res => {
-                    console.log(res.status)
-                    
-                })
+                .then(res => console.log(res.status))
                 .catch(err => console.log(err));
             }}
             validationSchema={validationSchema}
         >
-            {({values, errors}) => (
+            {({values, errors, handleChange}) => (
                 <Form className="form" id="applyForm">
                     <div className="form__header">
                         <div className="form__header-marginRight">
@@ -87,11 +81,8 @@ const PrescoringForm: React.FC = () => {
                                 <label htmlFor="amount" className="form__text">Select amount</label>
                                 <p>{values.amount.toLocaleString()}</p>
                                 
-                                <input type="range" name="amount" 
-                                    /* onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                        console.log(values)
-                                        setRange(+event.target.value)}} */
-                                    min='15000' max='600000' /* value={range}  */
+                                <input type="range" name="amount" onChange={handleChange}
+                                    min='15000' max='600000' 
                                     style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${values.amount/600000*100}%, ${color2} ${values.amount/600000*100}%)`}}
                                 />
                                 <div >
