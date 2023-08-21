@@ -100,13 +100,13 @@ const PrescoringForm: React.FC = () => {
                     </div>
                     <h3 className="form_subtitle">Contact Information</h3>
                     <div className="form__inputs">  
-                        <Input type='text' name='lastName' label='Your last name'
+                        <Input type='text' name='lastName' label='Your last name' values={values}
                             placeholder='For Example Doe' required={true}  errors={errors} 
                         />
-                        <Input type='text' name='firstName' label='Your first name'
+                        <Input type='text' name='firstName' label='Your first name' values={values}
                             placeholder='For Example Jhon' required={true} errors={errors} 
                         />
-                        <Input type='text' name='middleName' label='Your patronymic'
+                        <Input type='text' name='middleName' label='Your patronymic' values={values}
                             placeholder='For Example Victorovich' required={false} errors={errors} 
                         />
 
@@ -114,17 +114,17 @@ const PrescoringForm: React.FC = () => {
                             arr={[6, 12, 18, 24]} 
                         />
 
-                        <Input type='email' name='email' label='Your email' 
+                        <Input type='email' name='email' label='Your email'  values={values}
                             placeholder='test@gmail.com' required={true} errors={errors} 
                         />
                         <InputDate type='date' name='birthdate' label='Your date of birth'
                             placeholder='Select Date and Time' required={true} errors={errors} 
                         /> 
 
-                        <Input type='text' name='passportSeries' label='Your passport series'
+                        <Input type='text' name='passportSeries' label='Your passport series' values={values}
                             placeholder='0000' required={true} errors={errors} 
                         />
-                        <Input type='text' name='passportNumber' label='Your passport number'
+                        <Input type='text' name='passportNumber' label='Your passport number' values={values}
                             placeholder='000000' required={true} errors={errors} 
                         /> 
                     </div>    

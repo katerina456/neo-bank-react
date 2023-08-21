@@ -12,7 +12,7 @@
 .input__field {
     border-radius: 6px;
     border: 1px solid rgba(128, 128, 128, 0.20);
-    background: #F9F5E3;
+    background-color: #F9F5E3;
     width: 297px;
     height: 40px;
     padding: 0 16px;
@@ -25,10 +25,16 @@
 
 .input__field:focus {
     border: 1px solid purple;
+    background-color: #F9F5E3;
 }
 
 .input__field-red {
     border: 2px solid #FF5631;
+    background-image: url(../icons/round-mistake.svg);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-origin: content-box;
 }
 
 .input__label {

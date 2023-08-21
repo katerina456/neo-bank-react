@@ -10,6 +10,7 @@ interface Props {
     placeholder: string,
     name: string,
     errors: any,
+    values: any
 }
 
 const Input: React.FC<Props> = (props) => {
@@ -21,7 +22,7 @@ const Input: React.FC<Props> = (props) => {
             <Field
             type={props.type}
             name={props.name}
-            className={`input__field ${props.errors[props.name] && 'input__field-red' }`}
+            className={`input__field ${props.errors[props.name] && 'input__field-red'}`}
             placeholder={props.placeholder}
             id={props.name}
             /* required={props.required} */     
