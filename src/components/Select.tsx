@@ -4,7 +4,7 @@ import {Field, ErrorMessage } from 'formik';
 import '../styles/input.scss';
 
 interface Props {
-    arr: string[],
+    arr: number[],
     required: boolean,
     label: string,
     name: string,
@@ -28,7 +28,7 @@ const Select: React.FC<Props> = (props) => {
                 {array.map(item => {
                     return (
                         <option value={item} className="input__option" key={item}>
-                            {item}
+                            {item} month
                         </option>)
                 })}
             </Field>

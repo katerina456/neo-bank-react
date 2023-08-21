@@ -37,7 +37,7 @@ const validationSchema = Yup.object().shape({
 
 
 const PrescoringForm: React.FC = () => {
-    const [range, setRange] = React.useState(15000)
+    //const [range, setRange] = React.useState(15000)
 
     const color1:string = "#5B35D5";
     const color2:string = "#E2E8F0";
@@ -45,11 +45,11 @@ const PrescoringForm: React.FC = () => {
     return (
         <Formik
             initialValues={{ 
-                amount: 100000,
+                amount: 15000,
                 lastName: "",
                 firstName: "",
                 middleName: "",
-                term: "6 month",
+                term: 6,
                 email: "", 
                 birthdate: "",
                 passportSeries: "",
@@ -75,7 +75,7 @@ const PrescoringForm: React.FC = () => {
             }}
             validationSchema={validationSchema}
         >
-            {({errors}) => (
+            {({values, errors}) => (
                 <Form className="form" id="applyForm">
                     <div className="form__header">
                         <div className="form__header-marginRight">
@@ -85,12 +85,14 @@ const PrescoringForm: React.FC = () => {
                             </div>
                             <div className="form__range">
                                 <label htmlFor="amount" className="form__text">Select amount</label>
-                                <p>{range.toLocaleString()}</p>
+                                <p>{values.amount.toLocaleString()}</p>
                                 
                                 <input type="range" name="amount" 
-                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRange(+event.target.value)}
-                                    min='15000' max='600000' value={range} 
-                                    style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${range/600000*100}%, ${color2} ${range/600000*100}%)`}}
+                                    /* onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                        console.log(values)
+                                        setRange(+event.target.value)}} */
+                                    min='15000' max='600000' /* value={range}  */
+                                    style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${values.amount/600000*100}%, ${color2} ${values.amount/600000*100}%)`}}
                                 />
                                 <div >
                                     <p className="form__text">15 000</p>
@@ -101,7 +103,7 @@ const PrescoringForm: React.FC = () => {
 
                         <div className="form__result">
                             <p className="form__text"><span>You have chosen the amount</span></p>
-                            <p className="form__text">{range.toLocaleString()} ₽</p>
+                            <p className="form__text">{values.amount.toLocaleString()} ₽</p>
                             <hr />
                         </div>
                     </div>
@@ -118,7 +120,7 @@ const PrescoringForm: React.FC = () => {
                         />
 
                         <Select name='term' label='Select term' required={true}
-                            arr={['6 month', '12 month', '18 month', '24 month']} 
+                            arr={[6, 12, 18, 24]} 
                         />
 
                         <Input type='email' name='email' label='Your email' 
