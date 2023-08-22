@@ -10,9 +10,11 @@ interface Props {
     name: string,
     type: "date",
     errors: any,
+    values: any,
 }
 
 const InputDate: React.FC<Props> = (props) => {
+    let colors: string = `input__field ${props.errors[props.name]? 'input__field-red' : ""} ${props.values[props.name] !== ''? 'input__field-green' : ''}`;
     return (
         <div className="input">
             <label htmlFor={props.name} className="input__label">
@@ -20,7 +22,7 @@ const InputDate: React.FC<Props> = (props) => {
             </label>
             <Field
             name={props.name}
-            className={`input__field ${props.errors[props.name] && 'input__field-red' }`}
+            className={colors}
             placeholder={props.placeholder}
             id={props.name}
            /*  required={props.required} */

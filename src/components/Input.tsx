@@ -14,6 +14,7 @@ interface Props {
 }
 
 const Input: React.FC<Props> = (props) => {
+    let colors: string = `input__field ${props.errors[props.name]? 'input__field-red' : ""} ${props.values[props.name] !== ''? 'input__field-green' : ''}`;
     return (
         <div className="input">
             <label htmlFor={props.name} className="input__label">
@@ -22,7 +23,7 @@ const Input: React.FC<Props> = (props) => {
             <Field
             type={props.type}
             name={props.name}
-            className={`input__field ${props.errors[props.name] && 'input__field-red'}`}
+            className={colors}
             placeholder={props.placeholder}
             id={props.name}
             /* required={props.required} */     

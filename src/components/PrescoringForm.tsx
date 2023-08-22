@@ -117,7 +117,7 @@ const PrescoringForm: React.FC = () => {
                         <Input type='email' name='email' label='Your email'  values={values}
                             placeholder='test@gmail.com' required={true} errors={errors} 
                         />
-                        <InputDate type='date' name='birthdate' label='Your date of birth'
+                        <InputDate type='date' name='birthdate' label='Your date of birth' values={values}
                             placeholder='Select Date and Time' required={true} errors={errors} 
                         /> 
 
