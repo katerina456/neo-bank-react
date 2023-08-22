@@ -37,6 +37,7 @@ const validationSchema = Yup.object().shape({
 
 
 const PrescoringForm: React.FC = () => {
+    const [isLoader, setIsLoader] = React.useState(false);
     const color1:string = "#5B35D5";
     const color2:string = "#E2E8F0";
 
@@ -56,7 +57,8 @@ const PrescoringForm: React.FC = () => {
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={(val) => {
-                console.log(val) 
+                console.log(val);
+                setIsLoader(true);
                 fetch('http://localhost:8080/application', {
                     method: 'POST',
                     headers: {
@@ -64,8 +66,14 @@ const PrescoringForm: React.FC = () => {
                     },
                     body: JSON.stringify(val)
                 }) 
-                .then(res => console.log(res.status))
-                .catch(err => console.log(err));
+                .then(res => {
+                    setIsLoader(false);
+                    console.log(res.status);
+                })
+                .catch(err => {
+                    setIsLoader(false);
+                    console.log(err);
+                });
             }}
             validationSchema={validationSchema}
         >
@@ -130,6 +138,7 @@ const PrescoringForm: React.FC = () => {
                     </div>    
 
                     <div className="form__buttons">
+                        {isLoader && <div className="loader"></div>}
                         <Button type="submit" text='Continue' />
                     </div> 
                  </Form>
