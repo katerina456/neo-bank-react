@@ -7,7 +7,7 @@ import Loan from "./components/Loan";
 
 import './styles/index.scss';
 
-function App() {
+const App: React.FC = () =>  {
   return (
     <div className="App">
       <BrowserRouter>
